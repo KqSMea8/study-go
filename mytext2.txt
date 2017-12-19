@@ -1,0 +1,6 @@
+write as %!s(func() time.Time=0x1068670)
+write as %!s(func() time.Time=0x1068670)
+write as %!s(func() time.Time=0x1068670)
+write as %!s(func() time.Time=0x1068670)
+write as 2017-12-05 17:01:50.623006635 +0800 CST m=+0.000643843
+write as 2017-12-05 17:01:51.861720928 +0800 CST m=+0.001037179

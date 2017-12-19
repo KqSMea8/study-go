@@ -1,0 +1,40 @@
+package main
+
+import(
+	"bufio"
+	"fmt"
+	"os"
+	"fmt"
+	"io"
+	"flag"
+	"strings"
+)
+
+func readfile(fileName string,handle func(string)) error {
+	f,err := os.Open(fileName)
+	if err != nil {
+		return err.Error()
+	}
+	buf := bufio.NewReader(f)
+	for {
+		line,err := buf.ReadString('\n')
+		line = strings.TrimSpace(line)
+		handle(line)
+		if err != nil {
+			if err == io.EOF {
+				return nil
+			}
+			return err.Error()
+		}
+	}
+	return nil
+}
+
+func main() {
+	readfile("mytext.txt","println")
+}
+hehehehe
+2017-12-05 16:54:37.025674403 +0800 CST m=+0.000875096hehehehe
+2017-12-05 16:54:39.398454433 +0800 CST m=+0.000857407write as 2017-12-05 16:55:11.001716451 +0800 CST m=+0.000687754
+write as 2017-12-05 16:55:13.707624364 +0800 CST m=+0.001441873
+write as 2017-12-05 16:55:16.591488353 +0800 CST m=+0.001078607
