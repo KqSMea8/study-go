@@ -39,8 +39,16 @@ func main() {
 		}
 	}
 
+	//一种
 	rb := json.NewEncoder(os.Stdout);
 	rb.Encode(students)
 	//fmt.Println(string(rb))
+
+	//二种
+	b, err := json.Marshal(students)
+	if err != nil {
+		fmt.Println("json err:", err)
+	}
+	fmt.Println(string(b))
 }
 
