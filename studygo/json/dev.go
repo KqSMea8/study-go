@@ -7,10 +7,10 @@ import(
 	"os"
 )
 
-type person struct{
-	name string  `json:"name"`
-	age int  `json:"age"`
-	weight float32  `json:"wieght"`
+type Person struct{
+	Name string  `json:"name"`
+	Age int  `json:"age"`
+	Weight float32  `json:"wieght"`
 }
 
 func main() {
@@ -18,13 +18,13 @@ func main() {
 	slcB, _ := json.Marshal(slcD)
 	fmt.Println(string(slcB))
 
-	var students [](map[string]person)
+	var students [](map[string]Person)
 	for i:=0;i<10;i++ {
 		pstring := fmt.Sprintf("abc%d",i)
-		tmp:= make(map[string]person)
-		var xtmp person
+		tmp:= make(map[string]Person)
+		var xtmp Person
 		//println(pstring)
-		xtmp = person{"xiao", 22, 58.60}
+		xtmp = Person{"xiao", 22, 58.60}
 		tmp[pstring] = xtmp
 		students = append(students,tmp)
 	}
@@ -32,9 +32,9 @@ func main() {
 	for spk,record := range students {
 		pk := fmt.Sprintf("abc%d",spk)
 		//println(spk,pk)
-		fmt.Println(record[pk].name, record[pk].age,record[pk].weight)
+		fmt.Println(record[pk].Name, record[pk].Age,record[pk].Weight)
 		for _, pvs := range record {
-			fmt.Println(pvs.name)
+			fmt.Println(pvs.Name)
 		}
 	}
 
