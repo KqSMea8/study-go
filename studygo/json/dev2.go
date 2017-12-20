@@ -6,7 +6,9 @@ import(
 	"fmt"
 	//"os"
 )
-
+/**
+数值自增的 key输出
+ */
 type Person struct{
 	Name string  `json:"Name"`
 	Age int  `json:"Age"`
