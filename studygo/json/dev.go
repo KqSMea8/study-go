@@ -31,7 +31,6 @@ func main() {
 
 	for spk,record := range students {
 		pk := fmt.Sprintf("abc%d",spk)
-		//println(spk,pk)
 		fmt.Println(record[pk].Name, record[pk].Age,record[pk].Weight)
 		for _, pvs := range record {
 			fmt.Println(pvs.Name)
