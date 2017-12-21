@@ -2,31 +2,33 @@
   <library name="GOPATH &lt;study-go&gt;">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../newgotwo/src/first-client" />
-      <root url="file://$PROJECT_DIR$/../newgotwo/src/first-demo" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/soga-charge" />
-      <root url="file://$PROJECT_DIR$/../newgotwo/src/first-idl" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/rider-idl" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/github.com" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/vendor" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/beegostudy" />
-      <root url="file://$PROJECT_DIR$/../newgotwo/src/rider" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/test" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/.idea" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/first-template" />
+      <root url="file://$PROJECT_DIR$/../newgotwo/src/myrider-client" />
+      <root url="file://$PROJECT_DIR$/../newgotwo/src/first-demo" />
+      <root url="file://$PROJECT_DIR$/../newgotwo/src/first-idl" />
+      <root url="file://$PROJECT_DIR$/../newgotwo/src/rider" />
     </CLASSES>
     <SOURCES>
       <root url="file://$PROJECT_DIR$/../newgotwo/src/first-client" />
-      <root url="file://$PROJECT_DIR$/../newgotwo/src/first-demo" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/soga-charge" />
-      <root url="file://$PROJECT_DIR$/../newgotwo/src/first-idl" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/rider-idl" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/github.com" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/vendor" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/beegostudy" />
-      <root url="file://$PROJECT_DIR$/../newgotwo/src/rider" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/test" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/.idea" />
       <root url="file://$PROJECT_DIR$/../newgotwo/src/first-template" />
+      <root url="file://$PROJECT_DIR$/../newgotwo/src/myrider-client" />
+      <root url="file://$PROJECT_DIR$/../newgotwo/src/first-demo" />
+      <root url="file://$PROJECT_DIR$/../newgotwo/src/first-idl" />
+      <root url="file://$PROJECT_DIR$/../newgotwo/src/rider" />
     </SOURCES>
     <excluded>
       <root url="file://$PROJECT_DIR$" />
