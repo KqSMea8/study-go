@@ -1,7 +1,7 @@
 package main
 
 import (
-	"batu/demo"
+	//"batu/demo"
 	"fmt"
 	"git.apache.org/thrift.git/lib/go/thrift"
 	"net"
