@@ -43,7 +43,7 @@ var (
 )
 
 func info1(info1 *myinfo ) {
-	info1.addInfo('x')
+	info1.addInfo('x')	//单引号
 	in1 <- 1
 }
 func info2(info2 *myinfo) {
@@ -79,8 +79,8 @@ func main() {
 	fmt.Println(aa)
 	//ll.Unlock()
 
-	//var input string
-	//fmt.Scanln(&input)	//这里的 Scanln 代码需要我们在程序退出前按下任意键结束。
+	var input string
+	fmt.Scanln(&input)	//这里的 Scanln 代码需要我们在程序退出前按下任意键结束。
 	fmt.Println("done")
 
 }
