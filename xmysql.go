@@ -61,8 +61,12 @@ func main() {
 		//psv := reStruct.Type().Field(si).Tag.Get("sql")
 		//fmt.Println("hello1:",sv,psv)
 		pname :=findTagName(myp,sv)
-		//ppsv :=
+
+		if pname==""{
+			continue
+		}
 		svalues[si] = reStruct.FieldByName(pname).Addr().Interface()
+
 		//svalues[si] = reStruct.Field(si).Addr().Interface()
 		fmt.Println("hello:",reStruct)
 	}
