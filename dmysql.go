@@ -6,6 +6,13 @@ import (
 	"reflect"
 )
 
+//显示多条数据
+type myperson struct {
+	Id uint64 `sql:"id"`
+	Age uint8 `sql:"age"`
+	Name string `sql:"name"`
+}
+
 func main() {
 
 	//链接数据库
@@ -30,7 +37,7 @@ func main() {
 	fmt.Println("获取单条记录")
 	var row *sql.Row
 	row = db.QueryRow("select * from infos")
-	var id,age uint8
+	var id,age uint64
 	var name string
 	err = row.Scan(&id,&name,&age)
 	if err != nil {
@@ -38,42 +45,38 @@ func main() {
 	}
 	fmt.Println(id,"\t",name,"\t",age)
 
-	//显示多条数据
-	type myperson struct {
-		Id uint8 `sql:"id"`
-		Age uint8 `sql:"age"`
-		Name string `sql:"name"`
-	}
 	fmt.Println("获取多条记录")
 	var rows *sql.Rows
-	rows,err = db.Query("select * from infos")
+	rows,err = db.Query("select id,age,name from infos")
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	myp:=myperson{}
 
+	testStructObject(rows,myp)
+
+	//fmt.Printf("这是一个Mysql例子\n",ssvalues)
+}
+
+func testStructObject(rows *sql.Rows,myp myperson) (mytest []myperson) {
 	columns,_:=rows.Columns()
-	svalues:=make([]interface{},len(columns))
+	svalues :=make([]interface{},len(columns))
 	reStruct:=reflect.ValueOf(&myp).Elem()
 	fmt.Println(columns)
 	for si,sv:=range columns{
 		//psv := reStruct.Type().Field(si).Tag.Get("sql")
 		//fmt.Println("hello1:",sv,psv)
 		pname :=findTagName(myp,sv)
-		if pname==""{
-			continue
-		}
+		//if pname==""{
+		//	continue
+		//}
 		fmt.Println("pname:",pname)
 		svalues[si] = reStruct.FieldByName(pname).Addr().Interface()
 		//svalues[si] = reStruct.Field(si).Addr().Interface()
 		fmt.Println("hello:",reStruct)
 	}
-	//return
-	//fmt.Println("hello:",svalues)
-	//results := make(map[int64]interface{})
-	//var ii int64
-	var mytest []myperson
+	//mytest:=[]myperson
 	for rows.Next() {
 		rows.Scan(svalues...)
 		//results[ii] = svalues
@@ -84,32 +87,9 @@ func main() {
 	//fmt.Println(mytest[0].Age)
 
 	for ppi:=0;ppi<len(mytest);ppi++ {
-		//fmt.Println(mytest[ppi].Id,mytest[ppi].Age,mytest[ppi].Name)
+		fmt.Println(mytest[ppi].Id,mytest[ppi].Age,mytest[ppi].Name)
 	}
-
-	defer rows.Close()
-
-	fmt.Printf("这是一个Mysql例子\n")
-}
-
-func testStructObject(rows sql.Rows,myp interface{}) error {
-	columns,_:=rows.Columns()
-	svalues:=make([]interface{},len(columns))
-	reStruct:=reflect.ValueOf(&myp).Elem()
-	fmt.Println(columns)
-	for si,sv:=range columns{
-		//psv := reStruct.Type().Field(si).Tag.Get("sql")
-		//fmt.Println("hello1:",sv,psv)
-		pname :=findTagName(myp,sv)
-		if pname==""{
-			continue
-		}
-		fmt.Println("pname:",pname)
-		svalues[si] = reStruct.FieldByName(pname).Addr().Interface()
-		//svalues[si] = reStruct.Field(si).Addr().Interface()
-		fmt.Println("hello:",reStruct)
-	}
-	return nil
+	return
 }
 
 func findTagName(myp interface{},tag string) (name string) {
@@ -127,12 +107,6 @@ func findTagName(myp interface{},tag string) (name string) {
 	return
 }
 
-func checkErr(err error) {
-	if err != nil {
-		fmt.Println(err)
-		panic(err)
-	}
-}
 
 /*
 mygo 下需要的表
