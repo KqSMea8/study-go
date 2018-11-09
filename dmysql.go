@@ -59,11 +59,11 @@ func main() {
 	//fmt.Printf("这是一个Mysql例子\n",ssvalues)
 }
 
-func testStructObject(rows *sql.Rows,myp myperson) (mytest []myperson) {
+func testStructObject(rows *sql.Rows,myp interface{}) (mytest []interface{}) {
 	columns,_:=rows.Columns()
 	svalues :=make([]interface{},len(columns))
-	reStruct:=reflect.ValueOf(&myp).Elem()
-	fmt.Println(columns)
+	reStruct:=reflect.ValueOf(&myp)
+	fmt.Println("what:",columns)
 	for si,sv:=range columns{
 		//psv := reStruct.Type().Field(si).Tag.Get("sql")
 		//fmt.Println("hello1:",sv,psv)
@@ -72,10 +72,14 @@ func testStructObject(rows *sql.Rows,myp myperson) (mytest []myperson) {
 		//	continue
 		//}
 		fmt.Println("pname:",pname)
-		svalues[si] = reStruct.FieldByName(pname).Addr().Interface()
+		//return
+		svalues[si] = reStruct.Elem().Interface()
+		fmt.Println("ppp:",svalues)
+		//svalues[si] = reStruct.Elem().FieldByName(pname).Interface()
 		//svalues[si] = reStruct.Field(si).Addr().Interface()
-		fmt.Println("hello:",reStruct)
+		//fmt.Println("hello:",reStruct.Elem().Field(si).Addr().Interface())
 	}
+	//return
 	//mytest:=[]myperson
 	for rows.Next() {
 		rows.Scan(svalues...)
@@ -87,19 +91,21 @@ func testStructObject(rows *sql.Rows,myp myperson) (mytest []myperson) {
 	//fmt.Println(mytest[0].Age)
 
 	for ppi:=0;ppi<len(mytest);ppi++ {
-		fmt.Println(mytest[ppi].Id,mytest[ppi].Age,mytest[ppi].Name)
+		fmt.Println(mytest[ppi])
+		//fmt.Println(mytest[ppi].Id,mytest[ppi].Age,mytest[ppi].Name)
 	}
 	return
 }
 
 func findTagName(myp interface{},tag string) (name string) {
 	myt:=reflect.TypeOf(myp)
-	//myv:=reflect.ValueOf(myp)
+	//myv:=reflect.ValueOf(&myp)
 
 	for mykk:=0;mykk<myt.NumField();mykk++ {
 		ptag:=myt.Field(mykk).Tag.Get("sql")
 		if tag == ptag {
 			name = myt.Field(mykk).Name
+			//vale = myv.Elem()
 			break
 		}
 		//fmt.Printf("%s -- %v --tag %v \n", myt.Field(mykk).Name, myv.Field(mykk).Interface(),ptag)
